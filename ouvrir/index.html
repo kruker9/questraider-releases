@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ouvrir QuestRaider</title>
+<!--
+  Page cible des boutons des e-mails (https://questraider.fr/ouvrir/).
+  Les clients mail bloquent souvent les liens questraider:// : l'e-mail pointe donc ici (https, notre domaine),
+  et cette page demande au navigateur d'ouvrir l'application installée (protocole questraider://, enregistré
+  par l'installateur Windows). Aucune donnée n'est lue ni transmise ; aucun script ni police externe.
+  À déposer chez Ionos : voir docs/emails-et-delivrabilite.md.
+-->
+<style>
+  :root { --ink:#131210; --gold:#E0B04F; --gold-hover:#EAC36F; --text:#F0EBE1; --text2:#A8A091; --surface:#1C1A17; --border:#36332D; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
+    background:var(--ink); color:var(--text); font-family:'Barlow','Segoe UI',Helvetica,Arial,sans-serif; line-height:1.6; }
+  main { width:100%; max-width:520px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:32px; }
+  .logo { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-weight:700; font-size:24px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--gold); margin:0 0 24px; }
+  h1 { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-size:28px; line-height:1.2; margin:0 0 12px; }
+  p { margin:0 0 16px; color:var(--text2); }
+  .btn { display:inline-block; background:var(--gold); color:var(--ink); font-weight:700; text-decoration:none;
+    padding:14px 24px; border-radius:8px; margin:8px 0 16px; }
+  .btn:hover, .btn:focus-visible { background:var(--gold-hover); }
+  .btn:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+  a { color:var(--gold); }
+  small { color:var(--text2); }
+</style>
+</head>
+<body>
+<main>
+  <p class="logo">QuestRaider</p>
+  <h1>Ouverture de QuestRaider…</h1>
+  <p>Si l'application est installée sur cet ordinateur, elle s'ouvre automatiquement. Ton navigateur peut te demander une confirmation : accepte « Ouvrir QuestRaider ».</p>
+  <a class="btn" href="questraider://ouvrir" id="open">Ouvrir QuestRaider</a>
+  <p>Rien ne se passe ? L'application n'est peut-être pas encore installée : <a href="/telecharger/">télécharger QuestRaider pour Windows</a>.</p>
+  <small>Une question ? Écris-nous à <a href="mailto:contact@questraider.fr">contact@questraider.fr</a>.</small>
+</main>
+<script>
+  // Tentative automatique d'ouverture de l'application (une seule fois, sans redirection en boucle).
+  window.setTimeout(function () { window.location.href = "questraider://ouvrir"; }, 300);
+</script>
+</body>
+</html>
