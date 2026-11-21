@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Télécharger QuestRaider</title>
+<!--
+  Page de téléchargement (https://questraider.fr/telecharger/), servie par GitHub Pages (dépôt kruker9/questraider-releases).
+  Le bouton pointe vers la copie « QuestRaider-Setup.exe » envoyée par « npm run release:win -- --publish » dans la dernière release.
+-->
+<style>
+  :root { --ink:#131210; --gold:#E0B04F; --gold-hover:#EAC36F; --text:#F0EBE1; --text2:#A8A091; --surface:#1C1A17; --border:#36332D; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
+    background:var(--ink); color:var(--text); font-family:'Barlow','Segoe UI',Helvetica,Arial,sans-serif; line-height:1.6; }
+  main { width:100%; max-width:520px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:32px; }
+  .logo { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-weight:700; font-size:24px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--gold); margin:0 0 24px; }
+  h1 { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-size:28px; line-height:1.2; margin:0 0 12px; }
+  p, li { color:var(--text2); }
+  p { margin:0 0 16px; }
+  .btn { display:inline-block; background:var(--gold); color:var(--ink); font-weight:700; text-decoration:none;
+    padding:14px 24px; border-radius:8px; margin:8px 0 16px; }
+  .btn:hover, .btn:focus-visible { background:var(--gold-hover); }
+  .btn:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+  a { color:var(--gold); }
+</style>
+</head>
+<body>
+<main>
+  <p class="logo">QuestRaider</p>
+  <h1>Télécharger QuestRaider</h1>
+  <p>QuestRaider est une application pour Windows (64 bits). Réalise des quêtes dans tes jeux, gagne des pépites et retire tes gains en euros.</p>
+  <a class="btn" href="https://github.com/kruker9/questraider-releases/releases/latest/download/QuestRaider-Setup.exe">Télécharger pour Windows</a>
+  <ol>
+    <li>Ouvre le fichier téléchargé et suis l'installation.</li>
+    <li>Lance QuestRaider depuis le raccourci du bureau.</li>
+    <li>Connecte-toi ou crée ton compte.</li>
+  </ol>
+  <p>Une question ? Écris-nous à <a href="mailto:contact@questraider.fr">contact@questraider.fr</a>.</p>
+</main>
+</body>
+</html>
