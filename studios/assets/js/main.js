@@ -112,11 +112,15 @@
       $$('.quete__btn', list).forEach((other) => { other.disabled = true })
       list.classList.add('is-busy')
       message.textContent = 'QuestRaider demande au serveur du jeu si la quête est réussie…'
-      later(() => {
+      later(() => succeed(card), reducedMotion ? 300 : 1500)
+    }
+
+    function succeed(card) {
+      {
         const gain = Number(card.dataset.pepites)
         card.dataset.etat = 'reussie'
         $('.quete__etat', card).textContent = '✓ Réussie'
-        button.hidden = true
+        $('.quete__btn', card).hidden = true
         list.classList.remove('is-busy')
         $$('.quete__btn', list).forEach((other) => { other.disabled = false })
         balance += gain
@@ -130,8 +134,29 @@
           ? `Tout est validé : ${formatNumber(balance)} pépites, prêtes à être retirées.`
           : `Le studio a confirmé : +${formatNumber(gain)} pépites sur ton solde.`
         resetButton.hidden = false
-      }, reducedMotion ? 300 : 1500)
+      }
     }
+
+    // Scroll-driven story: each step of the page puts the demo in the matching state.
+    app.addEventListener('qr:stage', (event) => {
+      const step = event.detail
+      reset()
+      const card = $('.quete', list)
+      if (step === 1) {
+        card.classList.add('is-cible')
+        message.textContent = 'Le catalogue : une quête, une récompense, un délai.'
+        return
+      }
+      take(card)
+      if (step === 2) { message.textContent = 'Quête prise : le compte à rebours tourne, à toi de jouer.'; return }
+      const button = $('.quete__btn', card)
+      card.dataset.etat = 'verif'
+      $('.quete__etat', card).textContent = 'Vérification…'
+      button.textContent = 'Vérification…'
+      message.textContent = 'QuestRaider demande au serveur du jeu si la quête est réussie…'
+      if (step === 3) { button.disabled = true; return }
+      succeed(card)
+    })
 
     function reset() {
       timers.forEach((id) => window.clearTimeout(id))
@@ -144,6 +169,7 @@
       list.classList.remove('is-busy')
       $$('.quete', list).forEach((card) => {
         card.dataset.etat = 'libre'
+        card.classList.remove('is-cible')
         delete card.dataset.fin
         $('.quete__etat', card).textContent = ''
         const button = $('.quete__btn', card)
@@ -322,6 +348,8 @@
       pauseButton.setAttribute('aria-pressed', String(paused))
       pauseButton.textContent = paused ? 'Reprendre' : 'Mettre en pause'
     })
+    // Scroll-driven story: the page tells the panel which part to put forward.
+    root.addEventListener('qr:stage', (event) => { root.dataset.stage = String(event.detail) })
     paint()
     if (!reducedMotion) window.setInterval(tick, 2400)
   }
@@ -330,7 +358,7 @@
   function reveal() {
     if (reducedMotion) return
     document.documentElement.classList.add('js')
-    let pending = $$('.bloc h2, .bloc .chapo, .etapes li, .flux, .calc, .parcours li, .regles li, .faq, .faits')
+    let pending = $$('.bloc h2:not([data-split]), .bloc .chapo, .etapes li, .flux, .calc, .parcours li, .regles li, .faq, .faits')
     pending.forEach((target) => target.classList.add('rev'))
     // Plain scroll check (no observer): content can never stay hidden once it is on screen.
     const check = () => {
