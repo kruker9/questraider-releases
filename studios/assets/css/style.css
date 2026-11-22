@@ -593,3 +593,8 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 60; pointer-event
 .bulles li:nth-child(2) { right: 6%; top: 93%; }
 .bulles li:nth-child(5) { right: 24%; top: 3%; }
 @media (max-width: 1020px) { .plaque--fond { left: 24%; right: 0; } .plaque--milieu { left: 0; } .plaque--avant { right: 0; } }
+
+/* Grands écrans : le titre ne doit jamais passer à la ligne à côté des panneaux. */
+.titre { font-size: clamp(42px, 7.6vw, 104px); }
+.titre--studio { font-size: clamp(30px, 5.2vw, 74px); }
+@media (min-width: 1021px) { .ligne > span { white-space: nowrap; } }
