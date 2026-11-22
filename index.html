@@ -3,40 +3,301 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="QuestRaider : réalise des quêtes dans tes jeux préférés et gagne des pépites, retirables en euros.">
-<title>QuestRaider</title>
-<!--
-  Page d'accueil minimale de questraider.fr (remplace la page de parking Ionos).
-  Un vrai site sur le domaine d'envoi rassure les filtres anti-spam et les destinataires qui cliquent sur les liens.
--->
-<style>
-  :root { --ink:#131210; --gold:#E0B04F; --gold-hover:#EAC36F; --text:#F0EBE1; --text2:#A8A091; --surface:#1C1A17; --border:#36332D; }
-  * { box-sizing:border-box; }
-  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
-    background:var(--ink); color:var(--text); font-family:'Barlow','Segoe UI',Helvetica,Arial,sans-serif; line-height:1.6; }
-  main { width:100%; max-width:620px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:32px; }
-  .logo { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-weight:700; font-size:28px; letter-spacing:3px;
-    text-transform:uppercase; color:var(--gold); margin:0 0 16px; }
-  h1 { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-size:32px; line-height:1.2; margin:0 0 12px; }
-  h2 { font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif; font-size:22px; margin:24px 0 8px; }
-  p { margin:0 0 16px; color:var(--text2); }
-  .btn { display:inline-block; background:var(--gold); color:var(--ink); font-weight:700; text-decoration:none;
-    padding:14px 24px; border-radius:8px; margin:8px 8px 16px 0; }
-  .btn:hover, .btn:focus-visible { background:var(--gold-hover); }
-  .btn:focus-visible { outline:2px solid #fff; outline-offset:2px; }
-  a { color:var(--gold); }
-</style>
+<title>QuestRaider — Gagne de l'argent en jouant à tes jeux PC</title>
+<meta name="description" content="Réalise des quêtes rémunérées dans tes jeux PC et gagne des pépites, retirables en euros par virement bancaire. Application Windows gratuite pour les joueurs.">
+<meta name="theme-color" content="#131210">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none'">
+<link rel="canonical" href="https://questraider.fr/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QuestRaider">
+<meta property="og:url" content="https://questraider.fr/">
+<meta property="og:title" content="QuestRaider — Gagne de l'argent en jouant à tes jeux PC">
+<meta property="og:description" content="Les studios publient des quêtes rémunérées. Tu les réalises dans le jeu, tu gagnes des pépites, tu les retires en euros.">
+<meta property="og:image" content="https://questraider.fr/assets/img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="QuestRaider : des quêtes payées dans tes jeux">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://questraider.fr/#organisation","name":"QuestRaider","url":"https://questraider.fr/","logo":"https://questraider.fr/assets/img/logo.png","email":"contact@questraider.fr"},{"@type":"WebSite","@id":"https://questraider.fr/#site","url":"https://questraider.fr/","name":"QuestRaider","inLanguage":"fr-FR","publisher":{"@id":"https://questraider.fr/#organisation"}},{"@type":"SoftwareApplication","name":"QuestRaider","description":"Application qui permet de réaliser des quêtes rémunérées dans des jeux vidéo et de retirer ses gains en euros.","operatingSystem":"Windows","applicationCategory":"GameApplication","downloadUrl":"https://questraider.fr/telecharger/","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://questraider.fr/#organisation"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"C'est quoi, une pépite ?","acceptedAnswer":{"@type":"Answer","text":"C'est l'unité de compte de QuestRaider. 1 000 pépites valent 1 €. L'appli affiche toujours les deux : « 27 300 pépites (27,30 €) »."}},{"@type":"Question","name":"Comment je récupère mon argent ?","acceptedAnswer":{"@type":"Answer","text":"Dès que ton solde atteint 25 €, tu demandes un retrait dans l'appli. Tu indiques ton identité et ton IBAN, tu déposes une pièce d'identité, et l'équipe fait le virement sur ton compte bancaire."}},{"@type":"Question","name":"Qui peut s'inscrire comme joueur ?","acceptedAnswer":{"@type":"Answer","text":"Toute personne de 18 ans ou plus, avec un PC sous Windows (64 bits)."}},{"@type":"Question","name":"Comment QuestRaider sait que j'ai réussi ?","acceptedAnswer":{"@type":"Answer","text":"Il le demande au serveur du jeu, qui te reconnaît grâce à ton adresse e-mail. Utilise donc la même adresse sur QuestRaider et sur ton compte de jeu."}},{"@type":"Question","name":"Et si le jeu dit que ce n'est pas encore réussi ?","acceptedAnswer":{"@type":"Answer","text":"Tu gardes ta place. Tu peux revalider 5 minutes plus tard, tant que le délai de la quête n'est pas écoulé. Passé ce délai, la place est libérée."}},{"@type":"Question","name":"Est-ce que c'est gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui. L'application est gratuite pour les joueurs : ce sont les studios qui financent les récompenses des quêtes."}}]}]}</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+<script src="/assets/js/main.js" defer></script>
 </head>
 <body>
-<main>
-  <p class="logo">QuestRaider</p>
-  <h1>Joue, réalise des quêtes, gagne des pépites.</h1>
-  <p>Les studios de jeux créent des quêtes rémunérées. Toi, tu les réalises dans le jeu et tu gagnes des pépites, retirables en euros par virement bancaire (joueurs résidant en France et en Suisse, 18 ans et plus).</p>
-  <a class="btn" href="/telecharger/">Télécharger pour Windows</a>
-  <a class="btn" href="/ouvrir/">Ouvrir l'application</a>
-  <h2>Vous êtes un studio ?</h2>
-  <p>Créez votre espace Studio depuis l'application, ajoutez vos jeux, connectez votre API et publiez vos premières quêtes.</p>
-  <p>Contact : <a href="mailto:contact@questraider.fr">contact@questraider.fr</a></p>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" class="defs" aria-hidden="true" focusable="false">
+  <symbol id="pepite" viewBox="0 0 24 24">
+    <path d="M7 2.5 16.5 2 22 9l-3.5 10.5L9 22 2 14.5z" fill="#E0B04F"/>
+    <path d="M7 2.5 11 10 2 14.5z" fill="#EAC36F"/>
+    <path d="M11 10 16.5 2 22 9z" fill="#C9993B"/>
+    <path d="M11 10 9 22l9.5-2.5z" fill="#B7862F"/>
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fleche" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav" id="haut">
+  <div class="wrap nav__in">
+    <a class="logo" href="#haut" aria-label="QuestRaider, haut de page"><svg width="22" height="22" aria-hidden="true"><use href="#pepite"/></svg>QuestRaider</a>
+    <nav aria-label="Sections de la page">
+      <ul class="nav__links">
+        <li><a href="#joueurs">Comment ça marche</a></li>
+        <li><a href="#validation">Validation</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="/studios/">Espace studios</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--s" href="/telecharger/">Télécharger</a>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ───────────── Accueil ───────────── -->
+<section class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__in">
+    <div class="hero__txt">
+      <p class="kicker">Application Windows · gratuite pour les joueurs</p>
+      <h1>Tu joues déjà.<br><span class="or">Fais-toi payer</span><br>tes exploits.</h1>
+      <p class="lead">Les studios de jeux publient des quêtes rémunérées. Tu les réalises dans le jeu, le studio confirme, et tu gagnes des pépites retirables en euros par virement bancaire.</p>
+      <div class="cta">
+        <a class="btn" href="/telecharger/">Télécharger pour Windows</a>
+        <a class="btn btn--ghost" href="/studios/">Je suis un studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
+      </div>
+      <p class="small">Réservé aux joueurs de 18 ans et plus.</p>
+    </div>
+
+    <!-- Aperçu 1 : l'appli côté joueur -->
+    <div class="hero__demo">
+      <p class="demo-tag"><span class="pulse" aria-hidden="true"></span>Essaie : c'est l'appli, en miniature</p>
+      <div class="app" id="demo-joueur">
+        <div class="app__bar" aria-hidden="true">
+          <span class="app__title"><svg width="14" height="14"><use href="#pepite"/></svg>QuestRaider</span>
+          <span class="app__win"><i></i><i></i><i></i></span>
+        </div>
+        <div class="app__top">
+          <div class="app__who"><span class="avatar" aria-hidden="true">R</span><span>Raider_42</span></div>
+          <div class="solde" id="solde">
+            <svg width="18" height="18" aria-hidden="true"><use href="#pepite"/></svg>
+            <span class="solde__n"><b id="solde-pepites">22 300</b> pépites</span>
+            <span class="solde__e" id="solde-euros">(22,30 €)</span>
+          </div>
+        </div>
+        <div class="seuil">
+          <div class="seuil__bar"><span id="seuil-fill"></span><i aria-hidden="true"></i></div>
+          <p class="seuil__txt" id="seuil-txt">Encore 2,70 € avant de pouvoir retirer</p>
+        </div>
+        <ul class="quetes" id="quetes">
+          <li class="quete" data-pepites="5500" data-etat="libre">
+            <div class="quete__art quete__art--a" aria-hidden="true"></div>
+            <div class="quete__txt">
+              <p class="quete__jeu">Brumes d'Ys</p>
+              <p class="quete__nom">Vaincre le gardien du phare</p>
+              <p class="quete__meta"><span class="gain"><svg width="14" height="14" aria-hidden="true"><use href="#pepite"/></svg>5 500 <small>(5,50 €)</small></span><span class="quete__delai">24 h</span><span class="quete__etat"></span></p>
+            </div>
+            <button class="btn btn--xs quete__btn" type="button">Je prends la quête</button>
+          </li>
+          <li class="quete" data-pepites="3000" data-etat="libre">
+            <div class="quete__art quete__art--b" aria-hidden="true"></div>
+            <div class="quete__txt">
+              <p class="quete__jeu">Turbo Bitume</p>
+              <p class="quete__nom">Gagner 3 courses en ligne</p>
+              <p class="quete__meta"><span class="gain"><svg width="14" height="14" aria-hidden="true"><use href="#pepite"/></svg>3 000 <small>(3,00 €)</small></span><span class="quete__delai">48 h</span><span class="quete__etat"></span></p>
+            </div>
+            <button class="btn btn--xs quete__btn" type="button">Je prends la quête</button>
+          </li>
+          <li class="quete" data-pepites="8000" data-etat="libre">
+            <div class="quete__art quete__art--c" aria-hidden="true"></div>
+            <div class="quete__txt">
+              <p class="quete__jeu">Colonie Zéro</p>
+              <p class="quete__nom">Atteindre le niveau 10</p>
+              <p class="quete__meta"><span class="gain"><svg width="14" height="14" aria-hidden="true"><use href="#pepite"/></svg>8 000 <small>(8,00 €)</small></span><span class="quete__delai">72 h</span><span class="quete__etat"></span></p>
+            </div>
+            <button class="btn btn--xs quete__btn" type="button">Je prends la quête</button>
+          </li>
+        </ul>
+        <div class="app__foot">
+          <p id="demo-msg" role="status" aria-live="polite">Choisis une quête pour commencer.</p>
+          <button class="lien" type="button" id="demo-reset" hidden>Recommencer</button>
+        </div>
+      </div>
+      <p class="demo-note">Démonstration : jeux, pseudo et montants fictifs.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="faits">
+      <li><b>1 000 pépites</b><span>= 1 €, toujours</span></li>
+      <li><b>25 €</b><span>pour demander un retrait</span></li>
+      <li><b>Virement</b><span>sur ton compte bancaire</span></li>
+      <li><b>3 quêtes</b><span>en cours en même temps</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────── Joueurs ───────────── -->
+<section class="bloc" id="joueurs">
+  <div class="wrap">
+    <p class="kicker">Pour les joueurs</p>
+    <h2>Quatre étapes, pas une de plus.</h2>
+    <ol class="etapes">
+      <li>
+        <span class="etapes__n">01</span>
+        <h3>Tu choisis une quête</h3>
+        <p>Le catalogue affiche les jeux, l'objectif, la récompense et le temps dont tu disposes : 12, 24, 48 ou 72 heures.</p>
+      </li>
+      <li>
+        <span class="etapes__n">02</span>
+        <h3>Tu joues</h3>
+        <p>Dans le vrai jeu, avec la même adresse e-mail que sur QuestRaider. C'est elle qui permet au studio de te reconnaître.</p>
+      </li>
+      <li>
+        <span class="etapes__n">03</span>
+        <h3>Tu valides</h3>
+        <p>Un bouton dans l'appli. QuestRaider demande au studio si l'objectif est atteint, la réponse arrive en quelques secondes.</p>
+      </li>
+      <li>
+        <span class="etapes__n">04</span>
+        <h3>Tu encaisses</h3>
+        <p>Les pépites arrivent sur ton solde. Dès 25 €, tu demandes un virement sur ton compte bancaire.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ───────────── Validation (aperçu 2) ───────────── -->
+<section class="bloc bloc--scene" id="validation">
+  <div class="wrap">
+    <p class="kicker">Sous le capot</p>
+    <h2>Pas de capture d'écran à envoyer.<br>Le jeu répond lui-même.</h2>
+    <p class="chapo">Quand un joueur clique sur « Valider la quête », QuestRaider pose une seule question au serveur du jeu : cette quête est-elle réussie pour ce joueur ? Lance l'appel pour voir ce qui se passe dans chaque cas.</p>
+
+    <div class="flux" id="demo-api" data-cas="ok">
+      <div class="flux__cas" role="group" aria-label="Cas à simuler">
+        <button type="button" class="chip" data-cas="ok" aria-pressed="true">Quête réussie</button>
+        <button type="button" class="chip" data-cas="non" aria-pressed="false">Pas encore réussie</button>
+        <button type="button" class="chip" data-cas="muet" aria-pressed="false">Le studio ne répond pas</button>
+      </div>
+
+      <div class="flux__ligne" aria-hidden="true">
+        <div class="noeud"><span class="noeud__ic">1</span><b>Appli du joueur</b><small>« Valider la quête »</small></div>
+        <div class="tuyau"><span class="paquet paquet--aller"></span></div>
+        <div class="noeud"><span class="noeud__ic">2</span><b>QuestRaider</b><small>signe la demande</small></div>
+        <div class="tuyau"><span class="paquet paquet--aller paquet--b"></span><span class="paquet paquet--retour"></span></div>
+        <div class="noeud"><span class="noeud__ic">3</span><b>Serveur du jeu</b><small>répond oui ou non</small></div>
+      </div>
+
+      <div class="flux__codes">
+        <figure class="code">
+          <figcaption>Ce que QuestRaider envoie</figcaption>
+<pre><code><span class="c-k">POST</span> https://api.votre-jeu.example/questraider
+Content-Type: application/json
+X-QuestRaider-Timestamp: <span class="c-n">1795376785</span>
+X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
+
+{ <span class="c-s">"quest_name"</span>: <span class="c-s">"gardien_du_phare"</span>,
+  <span class="c-s">"email"</span>: <span class="c-s">"joueur@exemple.fr"</span> }</code></pre>
+        </figure>
+        <figure class="code code--rep">
+          <figcaption>Ce que le jeu répond</figcaption>
+          <pre><code id="api-rep" class="attente">— en attente de l'appel —</code></pre>
+          <p class="verdict" id="api-verdict" role="status" aria-live="polite"></p>
+        </figure>
+      </div>
+
+      <div class="flux__go">
+        <button class="btn" type="button" id="api-go">Lancer l'appel</button>
+        <p class="small">La demande est signée avec la clé secrète du studio : le serveur du jeu peut vérifier qu'elle vient bien de QuestRaider.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Renvoi vers la landing studios ───────────── -->
+<section class="bande" id="studios">
+  <div class="wrap bande__in">
+    <div>
+      <p class="kicker">Pour les studios</p>
+      <h2>Vous éditez un jeu ?</h2>
+      <p class="chapo">Publiez des quêtes rémunérées et ne payez que les objectifs réellement atteints par les joueurs.</p>
+    </div>
+    <a class="btn" href="/studios/">Découvrir l'espace Studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
+  </div>
+</section>
+
+<!-- ───────────── Confiance ───────────── -->
+<section class="bloc" id="confiance">
+  <div class="wrap">
+    <p class="kicker">Les règles du jeu</p>
+    <h2>Chacun sait à quoi s'en tenir.</h2>
+    <ul class="regles">
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Des studios vérifiés</h3><p>Chaque studio et chaque jeu est contrôlé par l'équipe avant d'apparaître dans le catalogue.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Un budget réservé d'avance</h3><p>La récompense d'une quête est bloquée dès sa publication : une place prise est une place payable.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Ton e-mail, avec ton accord</h3><p>Il n'est transmis au studio que si tu l'acceptes, pour vérifier tes quêtes. Tu peux retirer cet accord.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Une quête, une fois</h3><p>Chaque quête se réussit une seule fois par joueur. Les connexions par VPN sont refusées.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────── Questions ───────────── -->
+<section class="bloc bloc--scene" id="questions">
+  <div class="wrap wrap--etroit">
+    <p class="kicker">Questions fréquentes</p>
+    <h2>Ce qu'on nous demande.</h2>
+    <div class="faq">
+      <details>
+        <summary>C'est quoi, une pépite ?</summary>
+        <p>C'est l'unité de compte de QuestRaider. 1 000 pépites valent 1 €. L'appli affiche toujours les deux : « 27 300 pépites (27,30 €) ».</p>
+      </details>
+      <details>
+        <summary>Comment je récupère mon argent ?</summary>
+        <p>Dès que ton solde atteint 25 €, tu demandes un retrait dans l'appli. Tu indiques ton identité et ton IBAN, tu déposes une pièce d'identité, et l'équipe fait le virement sur ton compte bancaire.</p>
+      </details>
+      <details>
+        <summary>Qui peut s'inscrire comme joueur ?</summary>
+        <p>Toute personne de 18 ans ou plus, avec un PC sous Windows (64 bits).</p>
+      </details>
+      <details>
+        <summary>Comment QuestRaider sait que j'ai réussi ?</summary>
+        <p>Il le demande au serveur du jeu, qui te reconnaît grâce à ton adresse e-mail. Utilise donc la même adresse sur QuestRaider et sur ton compte de jeu.</p>
+      </details>
+      <details>
+        <summary>Et si le jeu dit que ce n'est pas encore réussi ?</summary>
+        <p>Tu gardes ta place. Tu peux revalider 5 minutes plus tard, tant que le délai de la quête n'est pas écoulé. Passé ce délai, la place est libérée.</p>
+      </details>
+      <details>
+        <summary>Est-ce que c'est gratuit ?</summary>
+        <p>Oui. L'application est gratuite pour les joueurs : ce sont les studios qui financent les récompenses des quêtes.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Appel final ───────────── -->
+<section class="fin">
+  <div class="wrap fin__in">
+    <svg width="56" height="56" aria-hidden="true"><use href="#pepite"/></svg>
+    <h2>La prochaine quête t'attend.</h2>
+    <div class="cta cta--centre">
+      <a class="btn" href="/telecharger/">Télécharger pour Windows</a>
+      <a class="btn btn--ghost" href="/ouvrir/">J'ai déjà l'application</a>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<footer class="pied">
+  <div class="wrap pied__in">
+    <span class="logo logo--s"><svg width="18" height="18" aria-hidden="true"><use href="#pepite"/></svg>QuestRaider</span>
+    <a href="mailto:contact@questraider.fr">contact@questraider.fr</a>
+    <a href="/studios/">Espace studios</a>
+    <a href="/telecharger/">Télécharger</a>
+  </div>
+</footer>
 </body>
 </html>
