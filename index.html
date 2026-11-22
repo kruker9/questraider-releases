@@ -24,6 +24,7 @@
 <link rel="preload" href="/assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/fx.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -45,7 +46,7 @@
     <nav aria-label="Sections de la page">
       <ul class="nav__links">
         <li><a href="#joueurs">Comment ça marche</a></li>
-        <li><a href="#validation">Validation</a></li>
+        <li><a href="#catalogue">Catalogue</a></li>
         <li><a href="#questions">Questions</a></li>
         <li><a href="/studios/">Espace studios</a></li>
       </ul>
@@ -56,25 +57,90 @@
 
 <main id="contenu">
 
-<!-- ───────────── Accueil ───────────── -->
-<section class="hero">
+<!-- ───────────── Ouverture ───────────── -->
+<section class="vitrine">
   <div class="hero__grid" aria-hidden="true"></div>
-  <div class="wrap hero__in">
-    <div class="hero__txt">
-      <p class="kicker">Application Windows · gratuite pour les joueurs</p>
-      <h1>Tu joues déjà.<br><span class="or">Fais-toi payer</span><br>tes exploits.</h1>
-      <p class="lead">Les studios de jeux publient des quêtes rémunérées. Tu les réalises dans le jeu, le studio confirme, et tu gagnes des pépites retirables en euros par virement bancaire.</p>
-      <div class="cta">
-        <a class="btn" href="/telecharger/">Télécharger pour Windows</a>
-        <a class="btn btn--ghost" href="/studios/">Je suis un studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
+  <ul class="bulles" aria-hidden="true">
+    <li><svg width="14" height="14"><use href="#pepite"/></svg>+5 500 <small>Brumes d'Ys</small></li>
+    <li><svg width="14" height="14"><use href="#pepite"/></svg>+3 000 <small>Turbo Bitume</small></li>
+    <li><svg width="14" height="14"><use href="#pepite"/></svg>+8 000 <small>Colonie Zéro</small></li>
+    <li><svg width="14" height="14"><use href="#pepite"/></svg>+2 500 <small>Neon Dojo</small></li>
+    <li><svg width="14" height="14"><use href="#pepite"/></svg>+6 000 <small>Les Sept Ports</small></li>
+  </ul>
+  <div class="wrap">
+    <p class="kicker">Application Windows · gratuite pour les joueurs</p>
+    <h1 class="titre">
+      <span class="ligne l0"><span>Tu joues déjà.</span></span>
+      <span class="ligne ligne--or l1"><span>Fais-toi payer</span></span>
+      <span class="ligne ligne--trait l2"><span>tes exploits.</span></span>
+    </h1>
+    <div class="vitrine__bas">
+      <div>
+        <p class="lead">Les studios de jeux publient des quêtes rémunérées. Tu les réalises dans le jeu, le studio confirme, et tu gagnes des pépites retirables en euros par virement bancaire.</p>
+        <div class="cta">
+          <a class="btn" data-aimant href="/telecharger/">Télécharger pour Windows</a>
+          <a class="btn btn--ghost" href="/studios/">Je suis un studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
+        </div>
+        <p class="small">Réservé aux joueurs de 18 ans et plus.</p>
       </div>
-      <p class="small">Réservé aux joueurs de 18 ans et plus.</p>
     </div>
+    <div class="scene" aria-hidden="true">
+      <div class="scene__plan">
+        <div class="plaque plaque--fond"><div class="quete"><div class="quete__art quete__art--b"></div><div class="quete__txt"><p class="quete__jeu">Turbo Bitume</p><p class="quete__nom">Gagner 3 courses en ligne</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>3 000 <small>(3,00 €)</small></span><span class="quete__delai">48 h</span></p></div></div></div>
+        <div class="plaque plaque--milieu"><div class="quete"><div class="quete__art quete__art--c"></div><div class="quete__txt"><p class="quete__jeu">Colonie Zéro</p><p class="quete__nom">Atteindre le niveau 10</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>8 000 <small>(8,00 €)</small></span><span class="quete__delai">72 h</span></p></div></div></div>
+        <div class="plaque plaque--avant">
+          <div class="plaque__tete"><span class="avatar">R</span><span>Raider_42</span><span class="solde"><svg width="18" height="18"><use href="#pepite"/></svg><span class="solde__n"><b>27 800</b> pépites</span></span></div>
+          <div class="seuil is-ok"><div class="seuil__bar"><span class="plein"></span><i></i></div><p class="seuil__txt">Retrait possible : tu as dépassé 25 €</p></div>
+          <div class="quete" data-etat="reussie"><div class="quete__art quete__art--a"></div><div class="quete__txt"><p class="quete__jeu">Brumes d'Ys</p><p class="quete__nom">Vaincre le gardien du phare</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>5 500 <small>(5,50 €)</small></span><span class="quete__etat">✓ Réussie</span></p></div></div>
+        </div>
+        <div class="plaque plaque--jeton"><svg width="16" height="16"><use href="#pepite"/></svg>+5 500</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Aperçu 1 : l'appli côté joueur -->
-    <div class="hero__demo">
-      <p class="demo-tag"><span class="pulse" aria-hidden="true"></span>Essaie : c'est l'appli, en miniature</p>
-      <div class="app" id="demo-joueur">
+<div class="defile" aria-hidden="true">
+  <div class="defile__piste">
+    <span>Prends une quête</span><i></i><span>Joue</span><i></i><span>Valide</span><i></i><span>Encaisse</span><i></i>
+    <span>Prends une quête</span><i></i><span>Joue</span><i></i><span>Valide</span><i></i><span>Encaisse</span><i></i>
+  </div>
+</div>
+
+<!-- ───────────── Récit : l'appli suit le défilement (aperçu 1) ───────────── -->
+<section class="story" id="joueurs">
+  <div class="wrap">
+    <div class="story__tete">
+      <p class="kicker">Comment ça marche</p>
+      <h2 data-split>Quatre étapes, pas une de plus.</h2>
+      <p class="chapo">Fais défiler : l'appli de droite avance en même temps que toi.</p>
+    </div>
+    <div class="story__in">
+      <div class="story__pas">
+        <article class="pas is-actif">
+          <span class="pas__n" aria-hidden="true">01</span>
+          <h3>Tu choisis une quête</h3>
+          <p>Le catalogue affiche les jeux, l'objectif, la récompense et le temps dont tu disposes : 12, 24, 48 ou 72 heures.</p>
+        </article>
+        <article class="pas">
+          <span class="pas__n" aria-hidden="true">02</span>
+          <h3>Tu joues</h3>
+          <p>Dans le vrai jeu, avec la même adresse e-mail que sur QuestRaider. C'est elle qui permet au studio de te reconnaître.</p>
+        </article>
+        <article class="pas">
+          <span class="pas__n" aria-hidden="true">03</span>
+          <h3>Tu valides</h3>
+          <p>Un bouton dans l'appli. QuestRaider demande au studio si l'objectif est atteint, la réponse arrive en quelques secondes.</p>
+        </article>
+        <article class="pas">
+          <span class="pas__n" aria-hidden="true">04</span>
+          <h3>Tu encaisses</h3>
+          <p>Les pépites arrivent sur ton solde. Dès 25 €, tu demandes un virement sur ton compte bancaire.</p>
+        </article>
+      </div>
+      <div class="story__panneau">
+        <div class="story__colle">
+          <p class="demo-tag"><span class="pulse" aria-hidden="true"></span>L'appli, en miniature : tu peux aussi cliquer</p>
+          <div class="app" id="demo-joueur">
         <div class="app__bar" aria-hidden="true">
           <span class="app__title"><svg width="14" height="14"><use href="#pepite"/></svg>QuestRaider</span>
           <span class="app__win"><i></i><i></i><i></i></span>
@@ -125,95 +191,38 @@
           <button class="lien" type="button" id="demo-reset" hidden>Recommencer</button>
         </div>
       </div>
-      <p class="demo-note">Démonstration : jeux, pseudo et montants fictifs.</p>
+          <p class="demo-note">Démonstration : jeux, pseudo et montants fictifs.</p>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
+<!-- ───────────── Mur de quêtes (aperçu 2) ───────────── -->
+<section class="mur" id="catalogue">
   <div class="wrap">
-    <ul class="faits">
-      <li><b>1 000 pépites</b><span>= 1 €, toujours</span></li>
-      <li><b>25 €</b><span>pour demander un retrait</span></li>
-      <li><b>Virement</b><span>sur ton compte bancaire</span></li>
-      <li><b>3 quêtes</b><span>en cours en même temps</span></li>
+    <p class="kicker">Le catalogue</p>
+    <h2 data-split>Des quêtes, pas des corvées.</h2>
+    <p class="chapo">Chaque studio propose ses propres objectifs : un boss à battre, une série de victoires, un niveau à atteindre. Tu prends ce qui te tente, dans les jeux qui te plaisent.</p>
+  </div>
+  <div class="mur__rangs" aria-hidden="true">
+    <ul class="mur__rang"><li class="carte"><div class="quete__art quete__art--a"></div><div><p class="quete__jeu">Brumes d'Ys</p><p class="quete__nom">Vaincre le gardien du phare</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>5 500 <small>(5,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--b"></div><div><p class="quete__jeu">Turbo Bitume</p><p class="quete__nom">Gagner 3 courses en ligne</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>3 000 <small>(3,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--c"></div><div><p class="quete__jeu">Colonie Zéro</p><p class="quete__nom">Atteindre le niveau 10</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>8 000 <small>(8,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--d"></div><div><p class="quete__jeu">Neon Dojo</p><p class="quete__nom">Enchaîner 20 parades parfaites</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>2 500 <small>(2,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--e"></div><div><p class="quete__jeu">Les Sept Ports</p><p class="quete__nom">Livrer une cargaison sans avarie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>6 000 <small>(6,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--f"></div><div><p class="quete__jeu">Cendres du Nord</p><p class="quete__nom">Survivre trois nuits</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>4 000 <small>(4,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--a"></div><div><p class="quete__jeu">Brumes d'Ys</p><p class="quete__nom">Vaincre le gardien du phare</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>5 500 <small>(5,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--b"></div><div><p class="quete__jeu">Turbo Bitume</p><p class="quete__nom">Gagner 3 courses en ligne</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>3 000 <small>(3,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--c"></div><div><p class="quete__jeu">Colonie Zéro</p><p class="quete__nom">Atteindre le niveau 10</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>8 000 <small>(8,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--d"></div><div><p class="quete__jeu">Neon Dojo</p><p class="quete__nom">Enchaîner 20 parades parfaites</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>2 500 <small>(2,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--e"></div><div><p class="quete__jeu">Les Sept Ports</p><p class="quete__nom">Livrer une cargaison sans avarie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>6 000 <small>(6,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--f"></div><div><p class="quete__jeu">Cendres du Nord</p><p class="quete__nom">Survivre trois nuits</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>4 000 <small>(4,00 €)</small></span></p></div></li></ul>
+    <ul class="mur__rang mur__rang--inverse"><li class="carte"><div class="quete__art quete__art--c"></div><div><p class="quete__jeu">Pixel Pêche</p><p class="quete__nom">Attraper un poisson légendaire</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>1 500 <small>(1,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--d"></div><div><p class="quete__jeu">Orbite Basse</p><p class="quete__nom">Réussir un amarrage manuel</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>7 000 <small>(7,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--e"></div><div><p class="quete__jeu">Ferraille &amp; Fortune</p><p class="quete__nom">Construire un atelier de rang 3</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>4 500 <small>(4,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--b"></div><div><p class="quete__jeu">Dernier Virage</p><p class="quete__nom">Finir premier sous la pluie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>3 500 <small>(3,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--a"></div><div><p class="quete__jeu">Marée Haute</p><p class="quete__nom">Explorer la grotte engloutie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>5 000 <small>(5,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--f"></div><div><p class="quete__jeu">Les Veilleurs</p><p class="quete__nom">Terminer un raid à quatre</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>9 000 <small>(9,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--c"></div><div><p class="quete__jeu">Pixel Pêche</p><p class="quete__nom">Attraper un poisson légendaire</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>1 500 <small>(1,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--d"></div><div><p class="quete__jeu">Orbite Basse</p><p class="quete__nom">Réussir un amarrage manuel</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>7 000 <small>(7,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--e"></div><div><p class="quete__jeu">Ferraille &amp; Fortune</p><p class="quete__nom">Construire un atelier de rang 3</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>4 500 <small>(4,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--b"></div><div><p class="quete__jeu">Dernier Virage</p><p class="quete__nom">Finir premier sous la pluie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>3 500 <small>(3,50 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--a"></div><div><p class="quete__jeu">Marée Haute</p><p class="quete__nom">Explorer la grotte engloutie</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>5 000 <small>(5,00 €)</small></span></p></div></li><li class="carte"><div class="quete__art quete__art--f"></div><div><p class="quete__jeu">Les Veilleurs</p><p class="quete__nom">Terminer un raid à quatre</p><p class="quete__meta"><span class="gain"><svg width="14" height="14"><use href="#pepite"/></svg>9 000 <small>(9,00 €)</small></span></p></div></li></ul>
+  </div>
+  <div class="wrap"><p class="demo-note">Démonstration : jeux et récompenses fictifs.</p></div>
+</section>
+
+<!-- ───────────── Grands chiffres ───────────── -->
+<section class="bloc" id="chiffres">
+  <div class="wrap">
+    <p class="kicker">Les règles, en chiffres</p>
+    <h2 data-split>Des pépites qui valent de vrais euros.</h2>
+    <ul class="chiffres">
+      <li class="chiffre" data-entree><b><span data-count="1000">1 000</span></b><span>pépites valent 1 €, toujours</span></li>
+      <li class="chiffre" data-entree><b><span data-count="25">25</span><small>€</small></b><span>suffisent pour demander un retrait</span></li>
+      <li class="chiffre" data-entree><b><span data-count="3">3</span></b><span>quêtes en cours en même temps</span></li>
+      <li class="chiffre" data-entree><b><span data-count="72">72</span><small>h</small></b><span>au plus pour terminer une quête</span></li>
     </ul>
-  </div>
-</section>
-
-<!-- ───────────── Joueurs ───────────── -->
-<section class="bloc" id="joueurs">
-  <div class="wrap">
-    <p class="kicker">Pour les joueurs</p>
-    <h2>Quatre étapes, pas une de plus.</h2>
-    <ol class="etapes">
-      <li>
-        <span class="etapes__n">01</span>
-        <h3>Tu choisis une quête</h3>
-        <p>Le catalogue affiche les jeux, l'objectif, la récompense et le temps dont tu disposes : 12, 24, 48 ou 72 heures.</p>
-      </li>
-      <li>
-        <span class="etapes__n">02</span>
-        <h3>Tu joues</h3>
-        <p>Dans le vrai jeu, avec la même adresse e-mail que sur QuestRaider. C'est elle qui permet au studio de te reconnaître.</p>
-      </li>
-      <li>
-        <span class="etapes__n">03</span>
-        <h3>Tu valides</h3>
-        <p>Un bouton dans l'appli. QuestRaider demande au studio si l'objectif est atteint, la réponse arrive en quelques secondes.</p>
-      </li>
-      <li>
-        <span class="etapes__n">04</span>
-        <h3>Tu encaisses</h3>
-        <p>Les pépites arrivent sur ton solde. Dès 25 €, tu demandes un virement sur ton compte bancaire.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ───────────── Validation (aperçu 2) ───────────── -->
-<section class="bloc bloc--scene" id="validation">
-  <div class="wrap">
-    <p class="kicker">Sous le capot</p>
-    <h2>Pas de capture d'écran à envoyer.<br>Le jeu répond lui-même.</h2>
-    <p class="chapo">Quand un joueur clique sur « Valider la quête », QuestRaider pose une seule question au serveur du jeu : cette quête est-elle réussie pour ce joueur ? Lance l'appel pour voir ce qui se passe dans chaque cas.</p>
-
-    <div class="flux" id="demo-api" data-cas="ok">
-      <div class="flux__cas" role="group" aria-label="Cas à simuler">
-        <button type="button" class="chip" data-cas="ok" aria-pressed="true">Quête réussie</button>
-        <button type="button" class="chip" data-cas="non" aria-pressed="false">Pas encore réussie</button>
-        <button type="button" class="chip" data-cas="muet" aria-pressed="false">Le studio ne répond pas</button>
-      </div>
-
-      <div class="flux__ligne" aria-hidden="true">
-        <div class="noeud"><span class="noeud__ic">1</span><b>Appli du joueur</b><small>« Valider la quête »</small></div>
-        <div class="tuyau"><span class="paquet paquet--aller"></span></div>
-        <div class="noeud"><span class="noeud__ic">2</span><b>QuestRaider</b><small>signe la demande</small></div>
-        <div class="tuyau"><span class="paquet paquet--aller paquet--b"></span><span class="paquet paquet--retour"></span></div>
-        <div class="noeud"><span class="noeud__ic">3</span><b>Serveur du jeu</b><small>répond oui ou non</small></div>
-      </div>
-
-      <div class="flux__codes">
-        <figure class="code">
-          <figcaption>Ce que QuestRaider envoie</figcaption>
-<pre><code><span class="c-k">POST</span> https://api.votre-jeu.example/questraider
-Content-Type: application/json
-X-QuestRaider-Timestamp: <span class="c-n">1795376785</span>
-X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
-
-{ <span class="c-s">"quest_name"</span>: <span class="c-s">"gardien_du_phare"</span>,
-  <span class="c-s">"email"</span>: <span class="c-s">"joueur@exemple.fr"</span> }</code></pre>
-        </figure>
-        <figure class="code code--rep">
-          <figcaption>Ce que le jeu répond</figcaption>
-          <pre><code id="api-rep" class="attente">— en attente de l'appel —</code></pre>
-          <p class="verdict" id="api-verdict" role="status" aria-live="polite"></p>
-        </figure>
-      </div>
-
-      <div class="flux__go">
-        <button class="btn" type="button" id="api-go">Lancer l'appel</button>
-        <p class="small">La demande est signée avec la clé secrète du studio : le serveur du jeu peut vérifier qu'elle vient bien de QuestRaider.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -222,10 +231,10 @@ X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
   <div class="wrap bande__in">
     <div>
       <p class="kicker">Pour les studios</p>
-      <h2>Vous éditez un jeu ?</h2>
+      <h2 data-split>Vous éditez un jeu ?</h2>
       <p class="chapo">Publiez des quêtes rémunérées et ne payez que les objectifs réellement atteints par les joueurs.</p>
     </div>
-    <a class="btn" href="/studios/">Découvrir l'espace Studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
+    <a class="btn" data-aimant href="/studios/">Découvrir l'espace Studio <svg width="18" height="18" aria-hidden="true"><use href="#fleche"/></svg></a>
   </div>
 </section>
 
@@ -233,12 +242,12 @@ X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
 <section class="bloc" id="confiance">
   <div class="wrap">
     <p class="kicker">Les règles du jeu</p>
-    <h2>Chacun sait à quoi s'en tenir.</h2>
+    <h2 data-split>Chacun sait à quoi s'en tenir.</h2>
     <ul class="regles">
-      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Des studios vérifiés</h3><p>Chaque studio et chaque jeu est contrôlé par l'équipe avant d'apparaître dans le catalogue.</p></div></li>
-      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Un budget réservé d'avance</h3><p>La récompense d'une quête est bloquée dès sa publication : une place prise est une place payable.</p></div></li>
-      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Ton e-mail, avec ton accord</h3><p>Il n'est transmis au studio que si tu l'acceptes, pour vérifier tes quêtes. Tu peux retirer cet accord.</p></div></li>
-      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Une quête, une fois</h3><p>Chaque quête se réussit une seule fois par joueur. Les connexions par VPN sont refusées.</p></div></li>
+      <li data-halo><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Des studios vérifiés</h3><p>Chaque studio et chaque jeu est contrôlé par l'équipe avant d'apparaître dans le catalogue.</p></div></li>
+      <li data-halo><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Un budget réservé d'avance</h3><p>La récompense d'une quête est bloquée dès sa publication : une place prise est une place payable.</p></div></li>
+      <li data-halo><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Ton e-mail, avec ton accord</h3><p>Il n'est transmis au studio que si tu l'acceptes, pour vérifier tes quêtes. Tu peux retirer cet accord.</p></div></li>
+      <li data-halo><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Une quête, une fois</h3><p>Chaque quête se réussit une seule fois par joueur. Les connexions par VPN sont refusées.</p></div></li>
     </ul>
   </div>
 </section>
@@ -247,7 +256,7 @@ X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
 <section class="bloc bloc--scene" id="questions">
   <div class="wrap wrap--etroit">
     <p class="kicker">Questions fréquentes</p>
-    <h2>Ce qu'on nous demande.</h2>
+    <h2 data-split>Ce qu'on nous demande.</h2>
     <div class="faq">
       <details>
         <summary>C'est quoi, une pépite ?</summary>
@@ -278,12 +287,11 @@ X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
 </section>
 
 <!-- ───────────── Appel final ───────────── -->
-<section class="fin">
+<section class="fin fin--xl">
   <div class="wrap fin__in">
-    <svg width="56" height="56" aria-hidden="true"><use href="#pepite"/></svg>
-    <h2>La prochaine quête t'attend.</h2>
+    <h2 data-split>La prochaine quête<br>t'attend.</h2>
     <div class="cta cta--centre">
-      <a class="btn" href="/telecharger/">Télécharger pour Windows</a>
+      <a class="btn" data-aimant href="/telecharger/">Télécharger pour Windows</a>
       <a class="btn btn--ghost" href="/ouvrir/">J'ai déjà l'application</a>
     </div>
   </div>
