@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuestRaider pour les studios — Payez les joueurs au résultat</title>
+<meta name="description" content="Publiez des quêtes rémunérées dans votre jeu. Votre budget n'est dépensé que lorsqu'un joueur atteint l'objectif, confirmé par votre propre serveur. Une seule route d'API à brancher.">
+<meta name="theme-color" content="#131210">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none'">
+<link rel="canonical" href="https://questraider.fr/studios/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QuestRaider">
+<meta property="og:url" content="https://questraider.fr/studios/">
+<meta property="og:title" content="QuestRaider pour les studios — Payez les joueurs au résultat">
+<meta property="og:description" content="Des quêtes rémunérées dans votre jeu : vous ne payez que les objectifs atteints, confirmés par votre propre serveur.">
+<meta property="og:image" content="https://questraider.fr/studios/assets/img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="QuestRaider pour les studios : payez les joueurs au résultat">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://questraider.fr/#organisation","name":"QuestRaider","url":"https://questraider.fr/","logo":"https://questraider.fr/assets/img/logo.png","email":"contact@questraider.fr"},{"@type":"WebPage","@id":"https://questraider.fr/studios/#page","url":"https://questraider.fr/studios/","name":"QuestRaider pour les studios","inLanguage":"fr-FR","isPartOf":{"@id":"https://questraider.fr/#site"},"about":{"@id":"https://questraider.fr/#organisation"}},{"@type":"Service","name":"Quêtes rémunérées QuestRaider","serviceType":"Acquisition et engagement de joueurs au résultat","provider":{"@id":"https://questraider.fr/#organisation"},"audience":{"@type":"BusinessAudience","audienceType":"Studios de jeux vidéo"},"url":"https://questraider.fr/studios/"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Que reçoit exactement notre serveur ?","acceptedAnswer":{"@type":"Answer","text":"Le nom technique de la quête et l'adresse e-mail du joueur, dans une demande signée avec votre clé secrète. Rien d'autre."}},{"@type":"Question","name":"Que doit répondre notre serveur ?","acceptedAnswer":{"@type":"Answer","text":"Un code 200 avec un corps JSON contenant « ok » à vrai ou à faux, en moins de 5 secondes. Vrai : la quête est validée. Faux : le joueur garde sa place et pourra réessayer plus tard."}},{"@type":"Question","name":"Que se passe-t-il si notre serveur est indisponible ?","acceptedAnswer":{"@type":"Answer","text":"Rien n'est versé. La quête reste en cours pour le joueur, qui peut relancer la validation un peu plus tard."}},{"@type":"Question","name":"Quand notre budget est-il dépensé ?","acceptedAnswer":{"@type":"Answer","text":"Le budget d'une quête est réservé sur votre solde à la publication. Il n'est dépensé qu'à chaque quête réussie, confirmée par votre serveur."}},{"@type":"Question","name":"Peut-on arrêter une quête en cours ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Plus aucun joueur ne peut la prendre, ceux qui l'ont déjà prise gardent leur délai pour la terminer, puis le budget restant revient sur votre solde."}},{"@type":"Question","name":"Comment reconnaissez-vous nos joueurs ?","acceptedAnswer":{"@type":"Answer","text":"Par leur adresse e-mail. Le joueur utilise la même adresse sur QuestRaider et sur son compte de jeu, et il accepte qu'elle vous soit transmise pour vérifier ses quêtes."}}]}]}</script>
+<link rel="icon" href="/studios/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/studios/assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/studios/assets/css/style.css">
+<script src="/studios/assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" class="defs" aria-hidden="true" focusable="false">
+  <symbol id="pepite" viewBox="0 0 24 24">
+    <path d="M7 2.5 16.5 2 22 9l-3.5 10.5L9 22 2 14.5z" fill="#E0B04F"/>
+    <path d="M7 2.5 11 10 2 14.5z" fill="#EAC36F"/>
+    <path d="M11 10 16.5 2 22 9z" fill="#C9993B"/>
+    <path d="M11 10 9 22l9.5-2.5z" fill="#B7862F"/>
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="fleche" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav" id="haut">
+  <div class="wrap nav__in">
+    <a class="logo" href="/" aria-label="QuestRaider, accueil"><svg width="22" height="22" aria-hidden="true"><use href="#pepite"/></svg>QuestRaider<span class="logo__tag">Studios</span></a>
+    <nav aria-label="Sections de la page">
+      <ul class="nav__links">
+        <li><a href="#simulateur">Simulateur</a></li>
+        <li><a href="#integration">Intégration</a></li>
+        <li><a href="#parcours">Démarrer</a></li>
+        <li><a href="#questions">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--s" href="/telecharger/">Télécharger</a>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ───────────── Accueil ───────────── -->
+<section class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__in">
+    <div class="hero__txt">
+      <p class="kicker">Pour les studios de jeux vidéo</p>
+      <h1>Payez des joueurs<br><span class="or">qui jouent,</span><br>pas des impressions.</h1>
+      <p class="lead">Vous fixez un objectif dans votre jeu et une récompense. Les joueurs le réalisent, votre serveur le confirme, et votre budget n'est dépensé que pour les quêtes réussies.</p>
+      <div class="cta">
+        <a class="btn" href="/telecharger/">Créer mon espace Studio</a>
+        <a class="btn btn--ghost" href="mailto:contact@questraider.fr">Écrire à l'équipe</a>
+      </div>
+      <p class="small">L'espace Studio se crée depuis l'application QuestRaider pour Windows.</p>
+    </div>
+
+    <!-- Aperçu 1 : le suivi d'une quête côté studio -->
+    <div class="hero__demo">
+      <p class="demo-tag"><span class="pulse" aria-hidden="true"></span>Le suivi d'une quête, en direct</p>
+      <div class="app" id="demo-suivi">
+        <div class="app__bar" aria-hidden="true">
+          <span class="app__title"><svg width="14" height="14"><use href="#pepite"/></svg>QuestRaider · Studio</span>
+          <span class="app__win"><i></i><i></i><i></i></span>
+        </div>
+        <div class="suivi__tete">
+          <div class="quete__art quete__art--a" aria-hidden="true"></div>
+          <div>
+            <p class="quete__jeu">Brumes d'Ys · quête en ligne</p>
+            <p class="quete__nom">Vaincre le gardien du phare</p>
+          </div>
+        </div>
+        <dl class="suivi__chiffres">
+          <div><dt>Places prises</dt><dd><b id="suivi-prises">38</b> / 100</dd></div>
+          <div><dt>Quêtes réussies</dt><dd><b id="suivi-reussies">21</b></dd></div>
+          <div><dt>Versé aux joueurs</dt><dd><b id="suivi-verse">105,00 €</b></dd></div>
+        </dl>
+        <div class="suivi__barre" aria-hidden="true"><span id="suivi-fill-prises"></span><span id="suivi-fill-reussies"></span></div>
+        <ul class="suivi__fil" id="suivi-fil" aria-label="Dernières activités">
+          <li data-t="ok"><span>Lynx_Bleu a réussi la quête</span><time>à l'instant</time></li>
+          <li data-t="prise"><span>Mara_K a pris la quête</span><time>il y a 2 min</time></li>
+          <li data-t="ok"><span>Orso77 a réussi la quête</span><time>il y a 5 min</time></li>
+        </ul>
+        <div class="app__foot">
+          <p>Chaque réussite est confirmée par votre serveur.</p>
+          <button class="lien" type="button" id="suivi-pause" aria-pressed="false">Mettre en pause</button>
+        </div>
+      </div>
+      <p class="demo-note">Démonstration : jeu, joueurs et montants fictifs.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="faits">
+      <li><b>Au résultat</b><span>vous payez les quêtes réussies</span></li>
+      <li><b>Une route</b><span>à ajouter à votre API</span></li>
+      <li><b>Signé</b><span>chaque appel est authentifié</span></li>
+      <li><b>En direct</b><span>places prises et budget suivis</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────── Simulateur (aperçu 2) ───────────── -->
+<section class="bloc" id="simulateur">
+  <div class="wrap">
+    <p class="kicker">Simulateur</p>
+    <h2>Composez votre première quête.</h2>
+    <p class="chapo">Un objectif, une récompense, un nombre de places et un délai : c'est tout ce qu'il faut pour publier. Réglez les curseurs pour voir la quête telle qu'elle apparaîtra aux joueurs.</p>
+
+    <div class="calc" id="demo-studio">
+      <form class="calc__form" aria-label="Simulateur de quête">
+        <p class="calc__titre">Votre quête</p>
+        <label class="champ">
+          <span>Objectif affiché aux joueurs</span>
+          <input type="text" id="q-nom" value="Vaincre le gardien du phare" maxlength="60" autocomplete="off">
+        </label>
+        <label class="champ">
+          <span>Récompense par joueur <output id="q-rec-out" for="q-rec">5,00 €</output></span>
+          <input type="range" id="q-rec" min="0.5" max="50" step="0.5" value="5">
+        </label>
+        <label class="champ">
+          <span>Nombre de places <output id="q-places-out" for="q-places">100</output></span>
+          <input type="range" id="q-places" min="10" max="1000" step="10" value="100">
+        </label>
+        <fieldset class="champ champ--seg">
+          <legend>Délai laissé au joueur</legend>
+          <div class="seg">
+            <label><input type="radio" name="q-delai" value="12"><span>12 h</span></label>
+            <label><input type="radio" name="q-delai" value="24" checked><span>24 h</span></label>
+            <label><input type="radio" name="q-delai" value="48"><span>48 h</span></label>
+            <label><input type="radio" name="q-delai" value="72"><span>72 h</span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="calc__res">
+        <p class="calc__titre">Ce que voit le joueur</p>
+        <div class="quete quete--apercu">
+          <div class="quete__art quete__art--a" aria-hidden="true"></div>
+          <div class="quete__txt">
+            <p class="quete__jeu">Votre jeu</p>
+            <p class="quete__nom" id="ap-nom">Vaincre le gardien du phare</p>
+            <p class="quete__meta"><span class="gain"><svg width="14" height="14" aria-hidden="true"><use href="#pepite"/></svg><span id="ap-pepites">5 000</span> <small id="ap-euros">(5,00 €)</small></span><span class="quete__delai" id="ap-delai">24 h</span><span class="quete__places" id="ap-places">100 places</span></p>
+          </div>
+        </div>
+
+        <p class="calc__titre calc__titre--2">Récompenses des joueurs</p>
+        <dl class="budget" aria-live="polite">
+          <div><dt>Par quête réussie</dt><dd id="b-unite">5,00 €</dd></div>
+          <div><dt>Nombre de places</dt><dd id="b-places">100</dd></div>
+          <div class="budget__total"><dt>Si toutes les places sont réussies</dt><dd id="b-rec">500,00 €</dd></div>
+        </dl>
+        <p class="small">Le budget d'une quête est réservé sur votre solde à la publication, puis dépensé quête réussie par quête réussie. Quand vous retirez la quête, la part des places non réussies revient sur votre solde. Le coût complet est affiché dans l'application avant de publier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Intégration (aperçu 3) ───────────── -->
+<section class="bloc bloc--scene" id="integration">
+  <div class="wrap">
+    <p class="kicker">Intégration</p>
+    <h2>Une seule route à brancher.<br>C'est votre jeu qui décide.</h2>
+    <p class="chapo">Quand un joueur clique sur « Valider la quête », QuestRaider interroge votre serveur : cette quête est-elle réussie pour ce joueur ? Lancez l'appel pour voir ce qui se passe dans chaque cas.</p>
+
+    <div class="flux" id="demo-api" data-cas="ok">
+      <div class="flux__cas" role="group" aria-label="Cas à simuler">
+        <button type="button" class="chip" data-cas="ok" aria-pressed="true">Quête réussie</button>
+        <button type="button" class="chip" data-cas="non" aria-pressed="false">Pas encore réussie</button>
+        <button type="button" class="chip" data-cas="muet" aria-pressed="false">Votre serveur ne répond pas</button>
+      </div>
+
+      <div class="flux__ligne" aria-hidden="true">
+        <div class="noeud"><span class="noeud__ic">1</span><b>Appli du joueur</b><small>« Valider la quête »</small></div>
+        <div class="tuyau"><span class="paquet paquet--aller"></span></div>
+        <div class="noeud"><span class="noeud__ic">2</span><b>QuestRaider</b><small>signe la demande</small></div>
+        <div class="tuyau"><span class="paquet paquet--aller paquet--b"></span><span class="paquet paquet--retour"></span></div>
+        <div class="noeud"><span class="noeud__ic">3</span><b>Votre serveur</b><small>répond oui ou non</small></div>
+      </div>
+
+      <div class="flux__codes">
+        <figure class="code">
+          <figcaption>Ce que votre serveur reçoit</figcaption>
+<pre><code><span class="c-k">POST</span> https://api.votre-jeu.example/questraider
+Content-Type: application/json
+X-QuestRaider-Timestamp: <span class="c-n">1795376785</span>
+X-QuestRaider-Signature: sha256=<span class="c-n">9f2c41…e41b</span>
+
+{ <span class="c-s">"quest_name"</span>: <span class="c-s">"gardien_du_phare"</span>,
+  <span class="c-s">"email"</span>: <span class="c-s">"joueur@exemple.fr"</span> }</code></pre>
+        </figure>
+        <figure class="code code--rep">
+          <figcaption>Ce que votre serveur répond</figcaption>
+          <pre><code id="api-rep" class="attente">— en attente de l'appel —</code></pre>
+          <p class="verdict" id="api-verdict" role="status" aria-live="polite"></p>
+        </figure>
+      </div>
+
+      <div class="flux__go">
+        <button class="btn" type="button" id="api-go">Lancer l'appel</button>
+        <p class="small">La signature est un HMAC-SHA256 calculé avec votre clé secrète : votre serveur vérifie que la demande vient bien de QuestRaider.</p>
+      </div>
+    </div>
+
+    <div class="integ">
+      <div>
+        <h3>Votre route, en quelques lignes</h3>
+        <p>Vérifiez la signature, regardez si le joueur a atteint l'objectif, répondez <code>{"ok": true}</code> ou <code>{"ok": false}</code>. Le joueur est reconnu par son adresse e-mail, la même que sur son compte de jeu.</p>
+        <ul class="puces">
+          <li>Un test d'appel est intégré à l'application, avant toute publication.</li>
+          <li>Votre clé secrète s'affiche, se copie et se régénère depuis votre espace.</li>
+          <li>Votre serveur dispose de 5 secondes pour répondre.</li>
+        </ul>
+      </div>
+      <figure class="code">
+        <figcaption>Exemple en Node.js</figcaption>
+<pre><code><span class="c-c">// signature attendue : HMAC-SHA256 de « horodatage.corps »</span>
+<span class="c-k">const</span> attendue = <span class="c-s">'sha256='</span> +
+  createHmac(<span class="c-s">'sha256'</span>, CLE_SECRETE)
+    .update(horodatage + <span class="c-s">'.'</span> + corpsBrut)
+    .digest(<span class="c-s">'hex'</span>)
+
+<span class="c-k">if</span> (signature !== attendue) <span class="c-k">return</span> res.status(<span class="c-n">401</span>).end()
+
+<span class="c-k">const</span> { quest_name, email } = JSON.parse(corpsBrut)
+res.json({ ok: joueurAReussi(quest_name, email) })</code></pre>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Démarrer ───────────── -->
+<section class="bloc" id="parcours">
+  <div class="wrap">
+    <p class="kicker">Démarrer</p>
+    <h2>De l'inscription à la première quête.</h2>
+    <ol class="parcours">
+      <li><h3>Créez votre espace Studio</h3><p>Depuis l'application. L'équipe QuestRaider vérifie chaque studio avant de lui ouvrir l'accès.</p></li>
+      <li><h3>Suivez l'assistant « Créer mon jeu »</h3><p>Une question par écran : la fiche du jeu, l'adresse de votre API, la première quête et son budget. Vous reprenez où vous vous êtes arrêté.</p></li>
+      <li><h3>Testez votre route</h3><p>L'assistant envoie un appel signé à votre serveur et vous dit tout de suite s'il a bien répondu.</p></li>
+      <li><h3>Publiez</h3><p>Le jeu passe en vérification, puis en ligne dans le catalogue. Vous suivez les places prises et le budget en direct.</p></li>
+    </ol>
+    <div class="cta cta--centre">
+      <a class="btn" href="/telecharger/">Télécharger l'application</a>
+      <a class="btn btn--ghost" href="mailto:contact@questraider.fr">Écrire à l'équipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Garanties ───────────── -->
+<section class="bloc bloc--scene" id="garanties">
+  <div class="wrap">
+    <p class="kicker">Ce qui protège votre budget</p>
+    <h2>Rien n'est versé sans votre accord.</h2>
+    <ul class="regles">
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Votre serveur a le dernier mot</h3><p>Aucune récompense n'est versée tant que votre API n'a pas répondu que la quête est réussie.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Un budget borné d'avance</h3><p>Le nombre de places fixe le maximum. Ce qui n'est pas dépensé vous revient quand vous retirez la quête.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Une réussite par joueur</h3><p>Chaque quête ne se réussit qu'une fois par joueur, et chaque joueur ne mène que quelques quêtes à la fois.</p></div></li>
+      <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><div><h3>Des joueurs contrôlés</h3><p>Joueurs majeurs, adresse e-mail vérifiée, connexions par VPN refusées.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────── Questions ───────────── -->
+<section class="bloc" id="questions">
+  <div class="wrap wrap--etroit">
+    <p class="kicker">Questions fréquentes</p>
+    <h2>Ce que les studios nous demandent.</h2>
+    <div class="faq">
+      <details>
+        <summary>Que reçoit exactement notre serveur ?</summary>
+        <p>Le nom technique de la quête et l'adresse e-mail du joueur, dans une demande signée avec votre clé secrète. Rien d'autre.</p>
+      </details>
+      <details>
+        <summary>Que doit répondre notre serveur ?</summary>
+        <p>Un code 200 avec un corps JSON contenant « ok » à vrai ou à faux, en moins de 5 secondes. Vrai : la quête est validée. Faux : le joueur garde sa place et pourra réessayer plus tard.</p>
+      </details>
+      <details>
+        <summary>Que se passe-t-il si notre serveur est indisponible ?</summary>
+        <p>Rien n'est versé. La quête reste en cours pour le joueur, qui peut relancer la validation un peu plus tard.</p>
+      </details>
+      <details>
+        <summary>Quand notre budget est-il dépensé ?</summary>
+        <p>Le budget d'une quête est réservé sur votre solde à la publication. Il n'est dépensé qu'à chaque quête réussie, confirmée par votre serveur.</p>
+      </details>
+      <details>
+        <summary>Peut-on arrêter une quête en cours ?</summary>
+        <p>Oui. Plus aucun joueur ne peut la prendre, ceux qui l'ont déjà prise gardent leur délai pour la terminer, puis le budget restant revient sur votre solde.</p>
+      </details>
+      <details>
+        <summary>Comment reconnaissez-vous nos joueurs ?</summary>
+        <p>Par leur adresse e-mail. Le joueur utilise la même adresse sur QuestRaider et sur son compte de jeu, et il accepte qu'elle vous soit transmise pour vérifier ses quêtes.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Appel final ───────────── -->
+<section class="fin">
+  <div class="wrap fin__in">
+    <svg width="56" height="56" aria-hidden="true"><use href="#pepite"/></svg>
+    <h2>Votre première quête peut partir aujourd'hui.</h2>
+    <div class="cta cta--centre">
+      <a class="btn" href="/telecharger/">Créer mon espace Studio</a>
+      <a class="btn btn--ghost" href="mailto:contact@questraider.fr">Écrire à l'équipe</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pied">
+  <div class="wrap pied__in">
+    <a class="logo logo--s" href="/"><svg width="18" height="18" aria-hidden="true"><use href="#pepite"/></svg>QuestRaider</a>
+    <a href="/">Vous êtes joueur ?</a>
+    <a href="mailto:contact@questraider.fr">contact@questraider.fr</a>
+    <a href="/telecharger/">Télécharger</a>
+  </div>
+</footer>
+</body>
+</html>
